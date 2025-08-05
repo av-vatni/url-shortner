@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build": "cd frontend && npm run build",
+    "dev": "npm run build && npm start"
   },
   "author": "",
   "license": "ISC",

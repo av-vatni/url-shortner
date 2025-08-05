@@ -14,16 +14,20 @@ async function handleGenerateNewShortUrl(req, res) {
         visitHistory: [],
     })
 
-    return res.json({ id: shortId });
+    return res.json({ shortId: shortId });
 }
 
 async function handleGetAnalytics(req, res) {
     const shortId = req.params.shortId;
     const result = await URL.findOne({ shortId });
-    
+    // Prevent crash if shortId is not found
+    if (!result) {
+        return res.status(404).json({ error: "Short URL not found" });
+    }
     return res.json({
-        totalClicks: result.visitHistory.length, analytics: result.visitHistory,
-    })
+        totalClicks: result.visitHistory.length,
+        analytics: result.visitHistory,
+    });
 }
 
 module.exports = {
