@@ -29,7 +29,14 @@ function App() {
 
   return (
     <div style={{ margin: '40px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>URL Shortener</h1>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+        <img 
+          src="/url-logo.png" 
+          alt="URL Shortener Logo" 
+          style={{ width: '40px', height: '40px', marginRight: '10px' }}
+        />
+        <h1>URL Shortener</h1>
+      </div>
       <form onSubmit={handleSubmit}>
         <input
           type="url"
