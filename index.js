@@ -7,9 +7,9 @@ const path = require('path');
 const app = express();
 const PORT = 8001;
 
-connectToMongoDB('mongodb://127.0.0.1:27017/short-url')
-.then(()=> console.log("MongoDB  connected"));
-
+const mongoUrl = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/short-url';
+connectToMongoDB(mongoUrl)
+  .then(() => console.log("MongoDB connected"));
 // Middlewares:
 // If below middleware is not used, it will not fetch body data
 app.use(express.json());
