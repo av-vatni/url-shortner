@@ -33,10 +33,25 @@ jobs:
       - name: Run tests
         run: npm test
         
-      # Step 5: Build Docker image
-      - name: Build Docker image
-        run: docker build -t url-shortener:latest .
+      # Step 5: Build Backend Docker image
+      - name: Build Backend Docker image
+        run: docker build -t url-shortener-backend:latest .
         
-      # Step 6: Verify Docker image was created
-      - name: Verify Docker image
-        run: docker images url-shortener:latest
+      # Step 6: Build Frontend Docker image
+      - name: Build Frontend Docker image
+        run: docker build -t url-shortener-frontend:latest ./frontend
+        
+      # Step 7: Verify Docker images were created
+      - name: Verify Docker images
+        run: |
+          echo "Backend image:"
+          docker images url-shortener-backend:latest
+          echo "Frontend image:"
+          docker images url-shortener-frontend:latest
+          
+      # Step 8: Test Docker Compose (optional - can be commented out if too slow)
+      - name: Test Docker Compose
+        run: |
+          echo "Testing Docker Compose configuration..."
+          docker-compose config
+          echo "✅ Docker Compose configuration is valid"
